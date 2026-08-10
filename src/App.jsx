@@ -1,6 +1,20 @@
-import "./App.css";
-import Faculdade from "./components/Faculdade";
+import {
+  SiReact,
+  SiJavascript,
+  SiTypescript,
+  SiNodedotjs,
+  SiPython,
+  SiSharp,
+  SiPostgresql,
+  SiSupabase,
+  SiGit,
+  SiGithub,
+} from "react-icons/si";
 
+import { FaDatabase } from "react-icons/fa";
+import "./App.css";
+import Faculdade from "./components/Faculdade/Faculdade";
+import Habilidades from "./components/Habilidades/Habilidades";
 function App() {
   return (
     <div className="app">
@@ -34,10 +48,6 @@ function App() {
 
       </header>
 
-
-      {/* =========================
-          HERO
-      ========================== */}
 
       <main>
 
@@ -83,8 +93,6 @@ function App() {
 
           </div>
 
-
-          {/* TERMINAL */}
 
           <div className="terminal">
 
@@ -144,11 +152,48 @@ function App() {
 
         </section>
 
+     <div className="skills-carousel">
 
-        {/* =========================
-            SOBRE
-        ========================== */}
+            <div className="skills-track">
 
+              <div className="skills-group">
+
+                <Skill nome="React" />
+                <Skill nome="React Native" />
+                <Skill nome="JavaScript" />
+                <Skill nome="TypeScript" />
+                <Skill nome="Node.js" />
+                <Skill nome="Python" />
+                <Skill nome="C#" />
+                <Skill nome="SQL" />
+                <Skill nome="PostgreSQL" />
+                <Skill nome="Supabase" />
+                <Skill nome="Git" />
+                <Skill nome="GitHub" />
+
+              </div>
+
+        
+              <div className="skills-group">
+
+                <Skill nome="React" />
+                <Skill nome="React Native" />
+                <Skill nome="JavaScript" />
+                <Skill nome="TypeScript" />
+                <Skill nome="Node.js" />
+                <Skill nome="Python" />
+                <Skill nome="C#" />
+                <Skill nome="SQL" />
+                <Skill nome="PostgreSQL" />
+                <Skill nome="Supabase" />
+                <Skill nome="Git" />
+                <Skill nome="GitHub" />
+
+              </div>
+
+            </div>
+
+          </div> 
         <section
           className="section"
           id="sobre"
@@ -156,7 +201,7 @@ function App() {
 
           <div className="section-title">
 
-            <span>01 //</span>
+            <span>01</span>
 
             <h2>
               Sobre mim
@@ -194,46 +239,9 @@ function App() {
 
         </section>
 
-
-        {/* =========================
-            TECNOLOGIAS
-        ========================== */}
-
-        <section className="section">
-
-          <div className="section-title">
-
-            <span>02 //</span>
-
-            <h2>
-              Stack
-            </h2>
-
-          </div>
-
-          <div className="skills-grid">
-
-            <Skill nome="React" />
-            <Skill nome="React Native" />
-            <Skill nome="JavaScript" />
-            <Skill nome="TypeScript" />
-            <Skill nome="Node.js" />
-            <Skill nome="Python" />
-            <Skill nome="C#" />
-            <Skill nome="SQL" />
-            <Skill nome="PostgreSQL" />
-            <Skill nome="Supabase" />
-            <Skill nome="Git" />
-            <Skill nome="GitHub" />
-
-          </div>
-
-        </section>
-
-
-        {/* =========================
-            PROJETOS
-        ========================== */}
+       <section className="section" id="stack">
+  <Habilidades />
+</section>
 
         <section
           className="section"
@@ -242,7 +250,7 @@ function App() {
 
           <div className="section-title">
 
-            <span>03 //</span>
+            <span>03</span>
 
             <h2>
               Projetos
@@ -275,17 +283,8 @@ function App() {
         </section>
 
 
-        {/* =========================
-            FACULDADE
-            SISTEMA DE CADASTRO
-        ========================== */}
-
         <Faculdade />
 
-
-        {/* =========================
-            CONTATO
-        ========================== */}
 
         <section
           className="contact-section"
@@ -293,7 +292,7 @@ function App() {
         >
 
           <span>
-            05 // CONTATO
+            05 CONTATO
           </span>
 
           <h2>
@@ -335,11 +334,6 @@ function App() {
 
       </main>
 
-
-      {/* =========================
-          FOOTER
-      ========================== */}
-
       <footer>
 
         <span>
@@ -357,29 +351,39 @@ function App() {
 }
 
 
-/* =========================
-   SKILL
-========================== */
-
 function Skill({ nome }) {
 
+  const icones = {
+    "React": SiReact,
+    "React Native": SiReact,
+    "JavaScript": SiJavascript,
+    "TypeScript": SiTypescript,
+    "Node.js": SiNodedotjs,
+    "Python": SiPython,
+    "C#": SiSharp,
+    "SQL": FaDatabase,
+    "PostgreSQL": SiPostgresql,
+    "Supabase": SiSupabase,
+    "Git": SiGit,
+    "GitHub": SiGithub,
+  };
+
+  const Icone = icones[nome];
+
   return (
-    <div className="skill-card">
+    <div className="skill">
+
+      {Icone && (
+        <Icone className="skill-icon" />
+      )}
 
       <span>
-        ⚡
+        {nome}
       </span>
-
-      {nome}
 
     </div>
   );
 }
-
-
-/* =========================
-   PROJECT
-========================== */
 
 function Project({
   title,

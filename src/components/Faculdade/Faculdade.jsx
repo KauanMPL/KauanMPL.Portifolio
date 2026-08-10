@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "./Faculdade.css";
-import { supabase } from "../lib/supabase";
+import { supabase } from "../../lib/supabase.js";
 
 function Faculdade() {
   const [materias, setMaterias] = useState([]);
@@ -661,7 +661,7 @@ function Faculdade() {
 
           <div className="section-title-faculdade">
 
-            <span>04 //</span>
+            <span>04</span>
 
             <h2>
               Faculdade

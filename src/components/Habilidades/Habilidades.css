@@ -1,0 +1,418 @@
+/* =========================
+   HABILIDADES
+========================= */
+
+.habilidades-container {
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 120px 7%;
+}
+
+/* =========================
+   TÍTULO
+========================= */
+
+
+
+
+/* =========================
+   GRID DAS CATEGORIAS
+========================= */
+
+.habilidades-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+
+/* =========================
+   CARD DA CATEGORIA
+========================= */
+
+.categoria-card {
+  position: relative;
+
+  min-height: 260px;
+
+  padding: 30px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(17, 24, 39, 0.8),
+      rgba(5, 5, 5, 0.95)
+    );
+
+  border: 1px solid #1f2937;
+  border-radius: 18px;
+
+  overflow: hidden;
+
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* brilho sutil no fundo */
+
+.categoria-card::before {
+  content: "";
+
+  position: absolute;
+
+  width: 180px;
+  height: 180px;
+
+  top: -100px;
+  right: -80px;
+
+  background: rgba(0, 229, 255, 0.08);
+
+  filter: blur(60px);
+
+  pointer-events: none;
+}
+
+.categoria-card:hover {
+  transform: translateY(-8px);
+
+  border-color: #00e5ff;
+
+  box-shadow:
+    0 0 30px rgba(0, 229, 255, 0.12),
+    inset 0 0 30px rgba(0, 229, 255, 0.02);
+}
+
+
+/* =========================
+   HEADER DA CATEGORIA
+========================= */
+
+.categoria-header {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+
+  padding-bottom: 20px;
+
+  margin-bottom: 25px;
+
+  border-bottom: 1px solid #1f2937;
+}
+
+.categoria-icon {
+  width: 28px;
+  height: 28px;
+
+  filter:
+    drop-shadow(
+      0 0 8px rgba(0, 229, 255, 0.25)
+    );
+
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
+}
+
+.categoria-card:hover .categoria-icon {
+  transform: scale(1.1);
+
+  filter:
+    drop-shadow(
+      0 0 12px rgba(0, 229, 255, 0.5)
+    );
+}
+
+.categoria-header h3 {
+  margin: 0;
+
+  color: #f8fafc;
+
+  font-size: 20px;
+  font-weight: 700;
+}
+
+
+/* =========================
+   TECNOLOGIAS
+========================= */
+
+.tecnologias-grid {
+  position: relative;
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+}
+
+
+/* =========================
+   ITEM TECNOLOGIA
+========================= */
+
+.tech-item {
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  padding: 9px 12px;
+
+  background: rgba(255, 255, 255, 0.025);
+
+  border: 1px solid #1f2937;
+
+  border-radius: 8px;
+
+  color: #64748b;
+
+  font-size: 13px;
+  font-weight: 500;
+
+  transition:
+    color 0.3s ease,
+    border-color 0.3s ease,
+    background 0.3s ease,
+    transform 0.3s ease;
+}
+
+.tech-icon {
+  width: 17px;
+  height: 17px;
+
+  color: #64748b;
+
+  opacity: 0.75;
+
+  transition:
+    color 0.3s ease,
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.tech-item:hover {
+  color: #f8fafc;
+
+  background: rgba(0, 229, 255, 0.06);
+
+  border-color: rgba(0, 229, 255, 0.5);
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 0 15px rgba(0, 229, 255, 0.08);
+}
+
+.tech-item:hover .tech-icon {
+  color: #00e5ff;
+
+  opacity: 1;
+
+  transform: scale(1.1);
+
+  filter:
+    drop-shadow(
+      0 0 5px rgba(0, 229, 255, 0.45)
+    );
+}
+
+
+/* =========================
+   CLOUD
+========================= */
+
+.categoria-card:nth-child(5) {
+  border-color: rgba(139, 92, 246, 0.25);
+}
+
+.categoria-card:nth-child(5):hover {
+  border-color: #8b5cf6;
+
+  box-shadow:
+    0 0 30px rgba(139, 92, 246, 0.15);
+}
+
+
+/* =========================
+   STATS
+========================= */
+
+.habilidades-stats {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 100px;
+
+  margin-top: 60px;
+
+  padding-top: 40px;
+
+  border-top: 1px solid #1f2937;
+}
+
+.stat-item {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 8px;
+}
+
+.stat-number {
+  font-size: 40px;
+
+  font-weight: 900;
+
+  line-height: 1;
+
+  background:
+    linear-gradient(
+      90deg,
+      #00e5ff,
+      #8b5cf6,
+      #ec4899
+    );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent;
+
+  filter:
+    drop-shadow(
+      0 0 10px rgba(0, 229, 255, 0.15)
+    );
+}
+
+.stat-label {
+  color: #64748b;
+
+  font-size: 12px;
+
+  font-family: monospace;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.12em;
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 1000px) {
+
+  .habilidades-container {
+    padding: 100px 7%;
+  }
+
+  .habilidades-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .habilidades-stats {
+    gap: 70px;
+  }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+  .habilidades-container {
+    padding: 80px 5%;
+  }
+
+  .habilidades-container .section-title {
+    gap: 12px;
+
+    margin-bottom: 35px;
+  }
+
+  .habilidades-container .section-title h2 {
+    font-size: 32px;
+  }
+
+  .habilidades-container .section-title span {
+    font-size: 13px;
+  }
+
+  .habilidades-grid {
+    grid-template-columns: 1fr;
+
+    gap: 18px;
+  }
+
+  .categoria-card {
+    min-height: auto;
+
+    padding: 25px;
+  }
+
+  .categoria-header {
+    margin-bottom: 20px;
+  }
+
+  .categoria-header h3 {
+    font-size: 18px;
+  }
+
+  .tech-item {
+    padding: 8px 10px;
+
+    font-size: 12px;
+  }
+
+  .tech-icon {
+    width: 15px;
+    height: 15px;
+  }
+
+  .habilidades-stats {
+    flex-direction: column;
+
+    gap: 30px;
+
+    margin-top: 45px;
+
+    padding-top: 30px;
+  }
+
+  .stat-number {
+    font-size: 35px;
+  }
+
+}
+
+
+/* =========================
+   REDUÇÃO DE MOVIMENTO
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .categoria-card,
+  .tech-item,
+  .tech-icon,
+  .categoria-icon {
+    transition: none;
+  }
+
+}

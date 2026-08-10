@@ -389,37 +389,321 @@ a {
    SKILLS
 ========================= */
 
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 15px;
+.skills-carousel {
+  position: relative;
+  width: 100vw;
+  max-width: 100vw;
+
+  margin-left: calc(50% - 50vw);
+
+  overflow: hidden;
+
+  padding: 25px 0 35px;
 }
 
-.skill-card {
-  padding: 25px;
-
-  border: 1px solid #1f2937;
-  border-radius: 12px;
-
-  background: #09090b;
-
-  color: #cbd5e1;
-
-  transition: 0.3s;
+.skills-carousel::before,
+.skills-carousel::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 150px;
+  z-index: 5;
+  pointer-events: none;
 }
 
-.skill-card span {
+.skills-carousel::before {
+  left: 0;
+  background: linear-gradient(
+    to right,
+    #000 0%,
+    transparent 100%
+  );
+}
+
+.skills-carousel::after {
+  right: 0;
+  background: linear-gradient(
+    to left,
+    #000 0%,
+    transparent 100%
+  );
+}
+
+.skills-track {
+  display: flex;
+  width: max-content;
+  animation: skillsScroll 40s linear infinite;
+}
+
+.skills-group {
+  display: flex;
+  align-items: center;
+  gap: 70px;
+  padding-right: 70px;
+  flex-shrink: 0;
+}
+
+.skill {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  color: #6b6b6b;
+
+  font-size: 22px;
+  font-weight: 600;
+
+  white-space: nowrap;
+
+  transition: all 0.3s ease;
+}
+
+.skill-icon {
+  width: 30px;
+  height: 30px;
+
+  color: #6b6b6b;
+
+  opacity: 0.75;
+
+  transition: all 0.3s ease;
+}
+
+.skill:hover {
+  color: #aaa;
+}
+
+.skill:hover .skill-icon {
   color: #00e5ff;
-  margin-right: 10px;
+  opacity: 1;
+
+  filter:
+    drop-shadow(0 0 5px rgba(0, 229, 255, 0.5));
 }
 
-.skill-card:hover {
-  border-color: #00e5ff;
+@keyframes skillsScroll {
+  from {
+    transform: translateX(0);
+  }
 
-  transform: translateY(-5px);
+  to {
+    transform: translateX(-50%);
+  }
+}
 
-  box-shadow:
-    0 0 25px rgba(0,229,255,0.12);
+.skills-carousel:hover .skills-track {
+  animation-play-state: paused;
+}
+
+/* =========================================
+   ESTEIRA
+========================================= */
+
+.skills-track {
+  display: flex;
+  width: max-content;
+
+  animation: stackMove 45s linear infinite;
+
+  will-change: transform;
+}
+
+
+/* =========================================
+   GRUPO DE TECNOLOGIAS
+========================================= */
+
+.skills-group {
+  display: flex;
+  align-items: center;
+
+  gap: 75px;
+
+  padding-right: 75px;
+
+  flex-shrink: 0;
+}
+
+
+/* =========================================
+   ITEM DA STACK
+========================================= */
+
+.skills-group > * {
+  flex-shrink: 0;
+}
+
+
+/*
+   Caso o componente Skill seja uma div,
+   button ou outro elemento
+*/
+
+.skill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 14px;
+
+  min-width: max-content;
+
+  padding: 0;
+
+  background: transparent;
+  border: none;
+  border-radius: 0;
+
+  color: #6b6b6b;
+
+  font-size: 23px;
+  font-weight: 600;
+
+  white-space: nowrap;
+
+  transition:
+    color 0.3s ease,
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+
+/* =========================================
+   ÍCONE
+========================================= */
+
+.skill svg,
+.skill img {
+  width: 30px;
+  height: 30px;
+
+  object-fit: contain;
+
+  filter: grayscale(1);
+
+  opacity: 0.65;
+
+  transition:
+    filter 0.3s ease,
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+
+/* =========================================
+   HOVER
+========================================= */
+
+.skill:hover {
+  color: #a0a0a0;
+
+  transform: translateY(-2px);
+}
+
+.skill:hover svg,
+.skill:hover img {
+  filter: grayscale(0);
+
+  opacity: 1;
+
+  transform: scale(1.08);
+}
+
+
+/* =========================================
+   ANIMAÇÃO INFINITA
+========================================= */
+
+@keyframes stackMove {
+
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+
+}
+
+
+/* =========================================
+   PAUSAR AO PASSAR O MOUSE
+========================================= */
+
+.skills-carousel:hover .skills-track {
+  animation-play-state: paused;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1000px) {
+
+  .skills-group {
+    gap: 55px;
+    padding-right: 55px;
+  }
+
+  .skill {
+    font-size: 20px;
+  }
+
+  .skill svg,
+  .skill img {
+    width: 27px;
+    height: 27px;
+  }
+
+}
+
+
+/* =========================================
+   CELULAR
+========================================= */
+
+@media (max-width: 600px) {
+
+  .skills-carousel {
+    padding: 5px 0 20px;
+  }
+
+  .skills-carousel::before,
+  .skills-carousel::after {
+    width: 70px;
+  }
+
+  .skills-group {
+    gap: 40px;
+    padding-right: 40px;
+  }
+
+  .skill {
+    font-size: 18px;
+  }
+
+  .skill svg,
+  .skill img {
+    width: 23px;
+    height: 23px;
+  }
+
+}
+
+/* Movimento infinito */
+@keyframes skillsScroll {
+
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+
 }
 
 
@@ -970,3 +1254,4 @@ footer span {
   }
 
 }
+
