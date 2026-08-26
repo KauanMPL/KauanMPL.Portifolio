@@ -1,5 +1,3 @@
-// src/components/Certificações/Certificacoes.jsx
-
 import { useEffect, useRef, useState } from "react";
 import "./Certificacoes.css";
 
@@ -7,7 +5,6 @@ import { certificacoesAPI } from "../../lib/supabase";
 import { ModalCertificacao } from "../Admin/ModalCertificacao";
 
 import {
-  // ===== Ícones react-icons/si =====
   SiUdemy,
   SiCoursera,
   SiDocker,
@@ -34,11 +31,10 @@ import {
   SiLinux,
   SiAngular,
   SiVuedotjs,
-  SiTailwindcss
+  SiTailwindcss,
 } from "react-icons/si";
 
 import {
-  // ===== Ícones react-icons/fa =====
   FaCertificate,
   FaAward,
   FaGraduationCap,
@@ -65,7 +61,7 @@ import {
   FaLaravel,
   FaDocker,
   FaEdit,
-  FaTrash
+  FaTrash,
 } from "react-icons/fa";
 
 // ======================================================
@@ -129,7 +125,7 @@ const iconesMap = {
   FaAws: FaAws,
   FaJava: FaJava,
   FaMicrosoft: FaMicrosoft,
-  FaReact: FaReact
+  FaReact: FaReact,
 };
 
 // ======================================================
@@ -138,6 +134,16 @@ const iconesMap = {
 
 const Certificacoes = ({ admin = false }) => {
   const sectionRef = useRef(null);
+
+  /*
+   * IMPORTANTE:
+   * Garante que somente o valor booleano TRUE
+   * permita ações administrativas.
+   *
+   * Isso impede que valores como "false" (string),
+   * objetos ou outros valores ativem o modo admin.
+   */
+  const isAdmin = admin === true;
 
   const [filter, setFilter] = useState("todos");
   const [certificacoes, setCertificacoes] = useState([]);
@@ -149,7 +155,7 @@ const Certificacoes = ({ admin = false }) => {
     total: 0,
     totalHoras: 0,
     categorias: {},
-    niveis: {}
+    niveis: {},
   });
 
   // ======================================================
@@ -167,7 +173,8 @@ const Certificacoes = ({ admin = false }) => {
   // ======================================================
 
   const [showEditModal, setShowEditModal] = useState(false);
-  const [certificacaoEditando, setCertificacaoEditando] = useState(null);
+  const [certificacaoEditando, setCertificacaoEditando] =
+    useState(null);
 
   // ======================================================
   // ANIMAÇÃO DA SEÇÃO
@@ -182,7 +189,9 @@ const Certificacoes = ({ admin = false }) => {
           }
         });
       },
-      { threshold: 0.1 }
+      {
+        threshold: 0.1,
+      }
     );
 
     if (sectionRef.current) {
@@ -209,10 +218,11 @@ const Certificacoes = ({ admin = false }) => {
       setLoading(true);
       setError(null);
 
-      const [certificacoesData, statsData] = await Promise.all([
-        certificacoesAPI.getAll(),
-        certificacoesAPI.getStats()
-      ]);
+      const [certificacoesData, statsData] =
+        await Promise.all([
+          certificacoesAPI.getAll(),
+          certificacoesAPI.getStats(),
+        ]);
 
       setCertificacoes(certificacoesData || []);
 
@@ -221,11 +231,14 @@ const Certificacoes = ({ admin = false }) => {
           total: 0,
           totalHoras: 0,
           categorias: {},
-          niveis: {}
+          niveis: {},
         }
       );
     } catch (err) {
-      console.error("Erro ao carregar certificações:", err);
+      console.error(
+        "Erro ao carregar certificações:",
+        err
+      );
 
       setError(
         "Não foi possível carregar as certificações."
@@ -237,7 +250,7 @@ const Certificacoes = ({ admin = false }) => {
         total: 0,
         totalHoras: 0,
         categorias: {},
-        niveis: {}
+        niveis: {},
       });
     } finally {
       setLoading(false);
@@ -251,28 +264,28 @@ const Certificacoes = ({ admin = false }) => {
   const categorias = [
     {
       id: "todos",
-      label: "Todos"
+      label: "Todos",
     },
     {
       id: "frontend",
-      label: "Front-End"
+      label: "Front-End",
     },
     {
       id: "back-end",
-      label: "Back-End"
+      label: "Back-End",
     },
     {
       id: "database",
-      label: "Database"
+      label: "Database",
     },
     {
       id: "devops",
-      label: "DevOps"
+      label: "DevOps",
     },
     {
       id: "cloud",
-      label: "Cloud"
-    }
+      label: "Cloud",
+    },
   ];
 
   // ======================================================
@@ -283,7 +296,7 @@ const Certificacoes = ({ admin = false }) => {
     const cores = {
       Básico: "#4CAF50",
       Intermediário: "#FF9800",
-      Avançado: "#f44336"
+      Avançado: "#f44336",
     };
 
     return cores[nivel] || "#4CAF50";
@@ -312,7 +325,7 @@ const Certificacoes = ({ admin = false }) => {
       "AWS Training": FaAws,
       AWS: FaAws,
       Microsoft: FaMicrosoft,
-      Google: SiGoogle
+      Google: SiGoogle,
     };
 
     return plataformas[plataforma] || FaUniversity;
@@ -323,6 +336,15 @@ const Certificacoes = ({ admin = false }) => {
   // ======================================================
 
   const abrirEditar = (certificacao) => {
+    // SEGURANÇA EXTRA
+    if (!isAdmin) {
+      return;
+    }
+
+    if (!certificacao?.id) {
+      return;
+    }
+
     setCertificacaoEditando(certificacao);
     setShowEditModal(true);
   };
@@ -333,20 +355,30 @@ const Certificacoes = ({ admin = false }) => {
   };
 
   const salvarEdicao = async (dados, arquivo) => {
-    if (!certificacaoEditando) {
+    // SEGURANÇA EXTRA
+    if (!isAdmin) {
+      console.warn(
+        "Tentativa de editar certificação sem permissão."
+      );
+      return;
+    }
+
+    if (!certificacaoEditando?.id) {
       return;
     }
 
     try {
       setLoading(true);
+      setError(null);
 
-      const certificacaoSalva = await certificacoesAPI.update(
-        certificacaoEditando.id,
-        dados
-      );
+      const certificacaoSalva =
+        await certificacoesAPI.update(
+          certificacaoEditando.id,
+          dados
+        );
 
-      // Se o usuário escolheu uma nova imagem
-      if (arquivo && certificacaoSalva) {
+      // Upload de nova imagem
+      if (arquivo && certificacaoSalva?.id) {
         await certificacoesAPI.uploadImagem(
           arquivo,
           certificacaoSalva.id
@@ -363,7 +395,8 @@ const Certificacoes = ({ admin = false }) => {
       );
 
       alert(
-        "Erro ao editar certificação. Verifique os dados."
+        error?.message ||
+          "Erro ao editar certificação. Verifique os dados."
       );
 
       throw error;
@@ -380,6 +413,18 @@ const Certificacoes = ({ admin = false }) => {
     id,
     titulo
   ) => {
+    // SEGURANÇA EXTRA
+    if (!isAdmin) {
+      console.warn(
+        "Tentativa de excluir certificação sem permissão."
+      );
+      return;
+    }
+
+    if (!id) {
+      return;
+    }
+
     const confirmar = window.confirm(
       `Tem certeza que deseja excluir a certificação "${titulo}"?`
     );
@@ -390,6 +435,7 @@ const Certificacoes = ({ admin = false }) => {
 
     try {
       setLoading(true);
+      setError(null);
 
       await certificacoesAPI.delete(id);
 
@@ -401,7 +447,8 @@ const Certificacoes = ({ admin = false }) => {
       );
 
       alert(
-        "Erro ao excluir certificação."
+        error?.message ||
+          "Erro ao excluir certificação."
       );
     } finally {
       setLoading(false);
@@ -413,6 +460,15 @@ const Certificacoes = ({ admin = false }) => {
   // ======================================================
 
   const abrirUpload = (cert) => {
+    // SOMENTE ADMIN
+    if (!isAdmin) {
+      return;
+    }
+
+    if (!cert?.id) {
+      return;
+    }
+
     setSelectedCert(cert);
     setShowUploadModal(true);
     setSelectedFile(null);
@@ -427,7 +483,12 @@ const Certificacoes = ({ admin = false }) => {
   };
 
   const handleFileSelect = (e) => {
-    const file = e.target.files[0];
+    // SOMENTE ADMIN
+    if (!isAdmin) {
+      return;
+    }
+
+    const file = e.target.files?.[0];
 
     if (!file) {
       return;
@@ -445,7 +506,12 @@ const Certificacoes = ({ admin = false }) => {
   };
 
   const handleUpload = async () => {
-    if (!selectedFile || !selectedCert) {
+    // SOMENTE ADMIN
+    if (!isAdmin) {
+      return;
+    }
+
+    if (!selectedFile || !selectedCert?.id) {
       return;
     }
 
@@ -467,7 +533,8 @@ const Certificacoes = ({ admin = false }) => {
       );
 
       alert(
-        "Erro ao fazer upload da imagem. Tente novamente."
+        error?.message ||
+          "Erro ao fazer upload da imagem. Tente novamente."
       );
     } finally {
       setUploading(false);
@@ -490,7 +557,10 @@ const Certificacoes = ({ admin = false }) => {
   // LOADING
   // ======================================================
 
-  if (loading && certificacoes.length === 0) {
+  if (
+    loading &&
+    certificacoes.length === 0
+  ) {
     return (
       <section
         className="certificacoes-section"
@@ -595,11 +665,9 @@ const Certificacoes = ({ admin = false }) => {
             <FaGraduationCap className="stat-icon" />
 
             <span className="stat-number">
-              {
-                Object.keys(
-                  stats.categorias || {}
-                ).length || 0
-              }
+              {Object.keys(
+                stats.categorias || {}
+              ).length || 0}
             </span>
 
             <span className="stat-label">
@@ -660,29 +728,30 @@ const Certificacoes = ({ admin = false }) => {
                 <div
                   key={cert.id}
                   className={`certificacao-card ${
-                    admin
+                    isAdmin
                       ? "admin-mode"
                       : ""
                   }`}
                 >
-
                   {/* ==================================================
                       AÇÕES ADMIN
+                      SÓ EXISTEM SE isAdmin === true
                   ================================================== */}
 
-                  {admin && (
+                  {isAdmin && (
                     <div className="certificacao-admin-actions">
-
                       <button
                         type="button"
                         className="cert-admin-edit"
                         onClick={(e) => {
                           e.stopPropagation();
+
                           abrirEditar(cert);
                         }}
                         title="Editar certificação"
                       >
                         <FaEdit />
+
                         <span>
                           Editar
                         </span>
@@ -702,11 +771,11 @@ const Certificacoes = ({ admin = false }) => {
                         title="Excluir certificação"
                       >
                         <FaTrash />
+
                         <span>
                           Excluir
                         </span>
                       </button>
-
                     </div>
                   )}
 
@@ -717,9 +786,7 @@ const Certificacoes = ({ admin = false }) => {
                   <div className="certificacao-imagem">
                     {cert.imagem_url ? (
                       <img
-                        src={
-                          cert.imagem_url
-                        }
+                        src={cert.imagem_url}
                         alt={cert.titulo}
                         className="certificado-thumb"
                         onClick={() =>
@@ -731,25 +798,25 @@ const Certificacoes = ({ admin = false }) => {
                       />
                     ) : (
                       <div className="certificado-placeholder">
-
                         <FaImage className="placeholder-icon" />
 
                         <span>
                           Sem imagem
                         </span>
 
-                        <button
-                          type="button"
-                          className="upload-btn"
-                          onClick={() =>
-                            abrirUpload(cert)
-                          }
-                        >
-                          <FaFileUpload />
-
-                          Upload
-                        </button>
-
+                        {/* UPLOAD SOMENTE ADMIN */}
+                        {isAdmin && (
+                          <button
+                            type="button"
+                            className="upload-btn"
+                            onClick={() =>
+                              abrirUpload(cert)
+                            }
+                          >
+                            <FaFileUpload />
+                            Upload
+                          </button>
+                        )}
                       </div>
                     )}
                   </div>
@@ -759,22 +826,19 @@ const Certificacoes = ({ admin = false }) => {
                   ================================================== */}
 
                   <div className="certificacao-header">
-
                     <div className="plataforma-info">
-
                       <PlataformaIcon
                         className="plataforma-icon"
                         style={{
                           color:
                             cert.cor_plataforma ||
-                            "#00d4ff"
+                            "#00d4ff",
                         }}
                       />
 
                       <span className="plataforma-nome">
                         {cert.plataforma}
                       </span>
-
                     </div>
 
                     <span
@@ -783,12 +847,11 @@ const Certificacoes = ({ admin = false }) => {
                         backgroundColor:
                           getNivelColor(
                             cert.nivel
-                          )
+                          ),
                       }}
                     >
                       {cert.nivel}
                     </span>
-
                   </div>
 
                   {/* ==================================================
@@ -804,7 +867,6 @@ const Certificacoes = ({ admin = false }) => {
                   ================================================== */}
 
                   <div className="certificacao-detalhes">
-
                     <span className="detalhe-item">
                       <FaCertificate className="detalhe-icon" />
 
@@ -813,13 +875,14 @@ const Certificacoes = ({ admin = false }) => {
 
                     <span className="detalhe-item">
                       📅{" "}
-                      {new Date(
-                        cert.data_conclusao
-                      ).toLocaleDateString(
-                        "pt-BR"
-                      )}
+                      {cert.data_conclusao
+                        ? new Date(
+                            cert.data_conclusao
+                          ).toLocaleDateString(
+                            "pt-BR"
+                          )
+                        : "Data não informada"}
                     </span>
-
                   </div>
 
                   {/* ==================================================
@@ -827,12 +890,8 @@ const Certificacoes = ({ admin = false }) => {
                   ================================================== */}
 
                   <div className="certificacao-habilidades">
-
                     {cert.habilidades?.map(
-                      (
-                        hab,
-                        index
-                      ) => {
+                      (hab, index) => {
                         const IconeHab =
                           getIcone(
                             cert
@@ -857,7 +916,6 @@ const Certificacoes = ({ admin = false }) => {
                         );
                       }
                     )}
-
                   </div>
 
                   {/* ==================================================
@@ -878,7 +936,6 @@ const Certificacoes = ({ admin = false }) => {
                       <FaExternalLinkAlt />
                     </a>
                   )}
-
                 </div>
               );
             }
@@ -895,127 +952,120 @@ const Certificacoes = ({ admin = false }) => {
 
       {/* ==================================================
           MODAL DE UPLOAD
+          SOMENTE ADMIN
       ================================================== */}
 
-      {showUploadModal && (
-        <div
-          className="modal-overlay"
-          onClick={fecharUpload}
-        >
+      {isAdmin &&
+        showUploadModal && (
           <div
-            className="modal-content"
-            onClick={(e) =>
-              e.stopPropagation()
-            }
+            className="modal-overlay"
+            onClick={fecharUpload}
           >
-            <div className="modal-header">
+            <div
+              className="modal-content"
+              onClick={(e) =>
+                e.stopPropagation()
+              }
+            >
+              <div className="modal-header">
+                <h3>
+                  Upload do Certificado
+                </h3>
 
-              <h3>
-                Upload do Certificado
-              </h3>
-
-              <button
-                className="modal-close"
-                onClick={fecharUpload}
-              >
-                <FaTimes />
-              </button>
-
-            </div>
-
-            <div className="modal-body">
-
-              <p>
-                <strong>
-                  Certificação:
-                </strong>{" "}
-                {selectedCert?.titulo}
-              </p>
-
-              <div className="upload-area">
-
-                {previewUrl ? (
-                  <div className="preview-container">
-
-                    <img
-                      src={previewUrl}
-                      alt="Preview"
-                      className="preview-image"
-                    />
-
-                    <button
-                      className="change-image-btn"
-                      onClick={() => {
-                        setSelectedFile(null);
-                        setPreviewUrl(null);
-                      }}
-                    >
-                      Trocar imagem
-                    </button>
-
-                  </div>
-                ) : (
-                  <label className="upload-dropzone">
-
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={
-                        handleFileSelect
-                      }
-                      style={{
-                        display: "none"
-                      }}
-                    />
-
-                    <FaFileUpload className="upload-icon" />
-
-                    <span>
-                      Clique para selecionar
-                      uma imagem
-                    </span>
-
-                    <small>
-                      JPG, PNG ou PDF
-                    </small>
-
-                  </label>
-                )}
-
+                <button
+                  className="modal-close"
+                  onClick={fecharUpload}
+                >
+                  <FaTimes />
+                </button>
               </div>
 
-              <button
-                className="upload-submit"
-                onClick={handleUpload}
-                disabled={
-                  !selectedFile ||
-                  uploading
-                }
-              >
-                {uploading
-                  ? "Enviando..."
-                  : "Enviar Certificado"}
-              </button>
+              <div className="modal-body">
+                <p>
+                  <strong>
+                    Certificação:
+                  </strong>{" "}
+                  {selectedCert?.titulo}
+                </p>
 
+                <div className="upload-area">
+                  {previewUrl ? (
+                    <div className="preview-container">
+                      <img
+                        src={previewUrl}
+                        alt="Preview"
+                        className="preview-image"
+                      />
+
+                      <button
+                        className="change-image-btn"
+                        onClick={() => {
+                          setSelectedFile(null);
+                          setPreviewUrl(null);
+                        }}
+                      >
+                        Trocar imagem
+                      </button>
+                    </div>
+                  ) : (
+                    <label className="upload-dropzone">
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={
+                          handleFileSelect
+                        }
+                        style={{
+                          display: "none",
+                        }}
+                      />
+
+                      <FaFileUpload className="upload-icon" />
+
+                      <span>
+                        Clique para selecionar
+                        uma imagem
+                      </span>
+
+                      <small>
+                        JPG, PNG ou PDF
+                      </small>
+                    </label>
+                  )}
+                </div>
+
+                <button
+                  className="upload-submit"
+                  onClick={handleUpload}
+                  disabled={
+                    !selectedFile ||
+                    uploading
+                  }
+                >
+                  {uploading
+                    ? "Enviando..."
+                    : "Enviar Certificado"}
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
 
       {/* ==================================================
           MODAL DE EDIÇÃO
+          SOMENTE ADMIN
       ================================================== */}
 
-      {showEditModal && (
-        <ModalCertificacao
-          certificacao={
-            certificacaoEditando
-          }
-          onClose={fecharEditar}
-          onSave={salvarEdicao}
-        />
-      )}
-
+      {isAdmin &&
+        showEditModal && (
+          <ModalCertificacao
+            certificacao={
+              certificacaoEditando
+            }
+            onClose={fecharEditar}
+            onSave={salvarEdicao}
+          />
+        )}
     </section>
   );
 };
