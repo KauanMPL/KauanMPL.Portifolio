@@ -27,6 +27,8 @@ import { Admin } from "./components/Admin/Admin";
 import { useHabilidades } from "./hooks/useHabilidades";
 import { useProjetos } from "./hooks/useProjetos";
 
+import Certificacoes from "./components/Certificações/Certificacoes";
+ 
 function App() {
   // ===== ESTADOS DA FACULDADE =====
   const [materias, setMaterias] = useState([]);
@@ -252,6 +254,9 @@ function App() {
 
         <Faculdade />
 
+        <section className="section" id="certificacoes">
+          <Certificacoes admin={admin} />
+        </section>
         {/* =========================
             CONTATO
         ========================== */}

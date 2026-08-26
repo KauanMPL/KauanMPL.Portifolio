@@ -1,0 +1,666 @@
+/* src/components/Certificações/Certificacoes.css */
+.certificacoes-section {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.certificacoes-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Header */
+.certificacoes-header {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.certificacoes-descricao {
+  color: var(--text-secondary, #b0b0b0);
+  font-size: 1.1rem;
+  max-width: 700px;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.certificacoes-stats {
+  display: flex;
+  gap: 3rem;
+  padding: 1.5rem;
+  background: var(--bg-card, #1a1a2e);
+  border: 1px solid var(--border-color, #2a2a4a);
+  border-radius: 12px;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.stat-icon {
+  font-size: 1.5rem;
+  color: var(--primary-color, #00d4ff);
+}
+
+.stat-number {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary, #ffffff);
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: var(--text-secondary, #b0b0b0);
+}
+
+/* Filtros */
+.filtros-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.filtro-btn {
+  padding: 0.5rem 1.25rem;
+  background: var(--bg-card, #1a1a2e);
+  border: 1px solid var(--border-color, #2a2a4a);
+  border-radius: 20px;
+  color: var(--text-secondary, #b0b0b0);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.filtro-btn:hover {
+  border-color: var(--primary-color, #00d4ff);
+  color: var(--text-primary, #ffffff);
+}
+
+.filtro-btn.active {
+  background: var(--primary-color, #00d4ff);
+  color: #ffffff;
+  border-color: var(--primary-color, #00d4ff);
+}
+
+.filtro-count {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.05rem 0.5rem;
+  border-radius: 10px;
+  font-size: 0.7rem;
+}
+
+/* Grid */
+.certificacoes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Card */
+.certificacao-card {
+  background: var(--bg-card, #1a1a2e);
+  border: 1px solid var(--border-color, #2a2a4a);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.certificacao-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border-color: var(--primary-color, #00d4ff);
+}
+
+.certificacao-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.plataforma-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.plataforma-icon {
+  font-size: 1.3rem;
+}
+
+.plataforma-nome {
+  font-size: 0.85rem;
+  color: var(--text-secondary, #b0b0b0);
+  font-weight: 500;
+}
+
+.certificacao-nivel {
+  padding: 0.2rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.certificacao-titulo {
+  font-size: 1.1rem;
+  color: var(--text-primary, #ffffff);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.certificacao-detalhes {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary, #b0b0b0);
+  flex-wrap: wrap;
+}
+
+.detalhe-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.detalhe-icon {
+  font-size: 0.9rem;
+}
+
+.certificacao-habilidades {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.25rem 0;
+}
+
+.habilidade-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.25rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  color: var(--text-secondary, #b0b0b0);
+  border: 1px solid var(--border-color, #2a2a4a);
+}
+
+.habilidade-icon {
+  display: flex;
+  align-items: center;
+}
+
+.hab-icon {
+  font-size: 0.9rem;
+}
+
+.certificacao-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--primary-color, #00d4ff);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-top: 0.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-color, #2a2a4a);
+  transition: all 0.3s ease;
+}
+
+.certificacao-link:hover {
+  gap: 0.75rem;
+  color: #7b2ffc;
+}
+
+.sem-certificados {
+  text-align: center;
+  padding: 3rem;
+  color: var(--text-secondary, #b0b0b0);
+  grid-column: 1 / -1;
+}
+
+/* Loading e Error */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  gap: 1rem;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--border-color, #2a2a4a);
+  border-top-color: var(--primary-color, #00d4ff);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  gap: 1rem;
+}
+
+.error-message {
+  color: #f44336;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.retry-button {
+  padding: 0.5rem 2rem;
+  background: var(--primary-color, #00d4ff);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.retry-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .certificacoes-stats {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .certificacoes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .filtros-container {
+    justify-content: center;
+  }
+
+  .filtro-btn {
+    font-size: 0.8rem;
+    padding: 0.4rem 1rem;
+  }
+
+  .certificacao-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .certificacao-card {
+    padding: 1rem;
+  }
+}
+/* src/components/Certificações/Certificacoes.css - Adicione no final */
+
+/* Imagem do Certificado */
+.certificacao-imagem {
+  width: 100%;
+  height: 180px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--bg-card, #1a1a2e);
+  border: 1px solid var(--border-color, #2a2a4a);
+  position: relative;
+  cursor: pointer;
+}
+
+.certificado-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.certificado-thumb:hover {
+  transform: scale(1.05);
+}
+
+.certificado-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 0.5rem;
+  color: var(--text-secondary, #b0b0b0);
+}
+
+.placeholder-icon {
+  font-size: 2.5rem;
+  opacity: 0.5;
+}
+
+.upload-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.3rem 0.8rem;
+  background: var(--primary-color, #00d4ff);
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.upload-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-content {
+  background: var(--bg-card, #1a1a2e);
+  border: 1px solid var(--border-color, #2a2a4a);
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 500px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.modal-header h3 {
+  color: var(--text-primary, #ffffff);
+  margin: 0;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  color: var(--text-secondary, #b0b0b0);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.modal-close:hover {
+  color: var(--text-primary, #ffffff);
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.modal-body p {
+  color: var(--text-secondary, #b0b0b0);
+}
+
+.upload-area {
+  border: 2px dashed var(--border-color, #2a2a4a);
+  border-radius: 12px;
+  padding: 1.5rem;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.upload-dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  color: var(--text-secondary, #b0b0b0);
+  width: 100%;
+  padding: 1rem;
+  transition: all 0.3s ease;
+}
+
+.upload-dropzone:hover {
+  color: var(--text-primary, #ffffff);
+  border-color: var(--primary-color, #00d4ff);
+}
+
+.upload-icon {
+  font-size: 3rem;
+  opacity: 0.5;
+}
+
+.upload-dropzone small {
+  opacity: 0.6;
+  font-size: 0.75rem;
+}
+
+.preview-container {
+  position: relative;
+  width: 100%;
+}
+
+.preview-image {
+  width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.change-image-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.3rem 0.8rem;
+  background: rgba(0, 0, 0, 0.7);
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.change-image-btn:hover {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.upload-submit {
+  padding: 0.75rem;
+  background: var(--primary-color, #00d4ff);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.upload-submit:hover:not(:disabled) {
+  transform: scale(1.02);
+  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+}
+
+.upload-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .certificacao-imagem {
+    height: 140px;
+  }
+  
+  .modal-content {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+}
+
+/* ======================================================
+   AÇÕES ADMIN DOS CARDS
+   ====================================================== */
+
+.certificacao-card {
+  position: relative;
+}
+
+.certificacao-admin-actions {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 20;
+
+  display: flex;
+  gap: 6px;
+
+  opacity: 0;
+  transform: translateY(-4px);
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+/* Só aparece quando passa o mouse no card */
+.certificacao-card.admin-mode:hover
+  .certificacao-admin-actions {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.certificacao-admin-actions button {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  border-radius: 7px;
+
+  padding: 7px 9px;
+
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  color: #fff;
+
+  cursor: pointer;
+
+  backdrop-filter: blur(10px);
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.certificacao-admin-actions button:hover {
+  transform: translateY(-1px);
+}
+
+/* Editar */
+
+.cert-admin-edit {
+  background: rgba(0, 212, 255, 0.14);
+  border-color: rgba(0, 212, 255, 0.35) !important;
+}
+
+.cert-admin-edit:hover {
+  background: rgba(0, 212, 255, 0.28);
+  border-color: #00d4ff !important;
+}
+
+/* Excluir */
+
+.cert-admin-delete {
+  background: rgba(244, 67, 54, 0.14);
+  border-color: rgba(244, 67, 54, 0.35) !important;
+}
+
+.cert-admin-delete:hover {
+  background: rgba(244, 67, 54, 0.28);
+  border-color: #f44336 !important;
+}
+
+/* Em telas pequenas */
+
+@media (max-width: 600px) {
+  .certificacao-admin-actions {
+    opacity: 1;
+    transform: none;
+  }
+
+  .certificacao-admin-actions button span {
+    display: none;
+  }
+
+  .certificacao-admin-actions button {
+    width: 32px;
+    height: 32px;
+
+    justify-content: center;
+
+    padding: 0;
+  }
+}

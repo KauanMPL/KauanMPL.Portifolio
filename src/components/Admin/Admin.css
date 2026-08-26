@@ -1,0 +1,513 @@
+/* =========================================
+   ADMIN - BOTÃO DE LOGIN
+========================================= */
+
+.admin-button {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 10000;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 10px 16px;
+
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  border-radius: 10px;
+
+  background: rgba(15, 15, 25, 0.92);
+  color: #fff;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3);
+
+  backdrop-filter: blur(12px);
+
+  transition: all 0.2s ease;
+}
+
+.admin-button:hover {
+  border-color: #8b5cf6;
+  transform: translateY(-2px);
+}
+
+
+/* =========================================
+   FUNDO
+========================================= */
+
+.admin-backdrop {
+  position: fixed;
+  inset: 0;
+
+  z-index: 9998;
+
+  background: rgba(0, 0, 0, 0.35);
+
+  backdrop-filter: blur(2px);
+}
+
+
+/* =========================================
+   PAINEL
+========================================= */
+
+.admin-panel {
+  position: fixed;
+
+  top: 20px;
+  right: 20px;
+  bottom: 20px;
+
+  width: 390px;
+  max-width: calc(100vw - 40px);
+
+  z-index: 9999;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(139, 92, 246, 0.22);
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(20, 20, 32, 0.98),
+      rgba(12, 12, 20, 0.98)
+    );
+
+  color: #fff;
+
+  box-shadow:
+    0 25px 80px rgba(0, 0, 0, 0.55),
+    0 0 50px rgba(99, 102, 241, 0.08);
+
+  backdrop-filter: blur(20px);
+
+  animation: adminSlideIn 0.22s ease;
+}
+
+@keyframes adminSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.admin-panel-header {
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 18px 18px 16px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.admin-title span {
+  display: block;
+
+  margin-bottom: 3px;
+
+  color: #8b5cf6;
+
+  font-size: 10px;
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+}
+
+.admin-title h3 {
+  margin: 0;
+
+  color: #fff;
+
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.admin-title small {
+  display: block;
+
+  max-width: 250px;
+
+  margin-top: 4px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  color: #71717a;
+
+  font-size: 11px;
+}
+
+.admin-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.admin-collapse,
+.admin-close {
+  width: 32px;
+  height: 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 0;
+  border-radius: 8px;
+
+  background: transparent;
+  color: #71717a;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.admin-collapse:hover {
+  background: rgba(139, 92, 246, 0.12);
+  color: #a78bfa;
+}
+
+.admin-close:hover {
+  background: rgba(239, 68, 68, 0.1);
+  color: #f87171;
+}
+
+
+/* =========================================
+   AÇÕES
+========================================= */
+
+.admin-actions-bar {
+  flex-shrink: 0;
+
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 7px;
+
+  padding: 14px 16px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+
+  background: rgba(255, 255, 255, 0.015);
+
+  overflow-y: auto;
+}
+
+.admin-actions-bar button {
+  min-height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  padding: 7px 9px;
+
+  border-radius: 8px;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  border: 1px solid rgba(139, 92, 246, 0.25);
+
+  background: rgba(139, 92, 246, 0.12);
+  color: #c4b5fd;
+}
+
+.btn-primary:hover {
+  background: rgba(139, 92, 246, 0.22);
+  border-color: rgba(139, 92, 246, 0.5);
+  color: #fff;
+}
+
+.btn-secondary {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  background: rgba(255, 255, 255, 0.045);
+  color: #a1a1aa;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.divider {
+  display: none;
+}
+
+
+/* =========================================
+   ABAS
+========================================= */
+
+.admin-tabs {
+  flex-shrink: 0;
+
+  display: flex;
+
+  gap: 4px;
+
+  padding: 8px 12px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.admin-tabs .tab {
+  flex: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  min-width: 0;
+
+  padding: 9px 8px;
+
+  border: 0;
+  border-radius: 7px;
+
+  background: transparent;
+  color: #71717a;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.admin-tabs .tab:hover {
+  color: #d4d4d8;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.admin-tabs .tab.active {
+  background: rgba(139, 92, 246, 0.12);
+  color: #c4b5fd;
+}
+
+.admin-tabs .tab b {
+  min-width: 18px;
+
+  padding: 2px 5px;
+
+  border-radius: 5px;
+
+  background: rgba(139, 92, 246, 0.18);
+
+  font-size: 9px;
+}
+
+
+/* =========================================
+   CONTEÚDO
+========================================= */
+
+.admin-content {
+  flex: 1;
+
+  min-height: 0;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  padding: 16px;
+}
+
+.admin-content::-webkit-scrollbar {
+  width: 5px;
+}
+
+.admin-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.admin-content::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #27272a;
+}
+
+.admin-content::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
+}
+
+
+/* =========================================
+   CARDS
+========================================= */
+
+.stats-grid {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 9px;
+}
+
+.stat-card {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 13px;
+
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 10px;
+
+  background: rgba(255, 255, 255, 0.035);
+
+  transition: all 0.2s ease;
+}
+
+.stat-card:hover {
+  border-color: rgba(139, 92, 246, 0.3);
+  background: rgba(139, 92, 246, 0.06);
+}
+
+.stat-icon {
+  width: 32px;
+  height: 32px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 8px;
+
+  background: rgba(139, 92, 246, 0.1);
+
+  font-size: 15px;
+}
+
+.stat-card span {
+  display: block;
+
+  margin-bottom: 2px;
+
+  color: #71717a;
+
+  font-size: 10px;
+}
+
+.stat-card strong {
+  display: block;
+
+  color: #f4f4f5;
+
+  font-size: 20px;
+  font-weight: 700;
+}
+
+
+/* =========================================
+   BOTÃO MINI - PAINEL OCULTO
+========================================= */
+
+.admin-mini-button {
+  position: fixed;
+
+  top: 50%;
+  right: 0;
+
+  transform: translateY(-50%);
+
+  z-index: 10000;
+
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 10px 8px;
+
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-right: 0;
+
+  border-radius: 9px 0 0 9px;
+
+  background: rgba(15, 15, 25, 0.94);
+  color: #a78bfa;
+
+  font-size: 9px;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.35);
+
+  backdrop-filter: blur(12px);
+
+  transition: all 0.2s ease;
+}
+
+.admin-mini-button:hover {
+  padding-right: 12px;
+
+  background: #181827;
+  color: #fff;
+}
+
+
+/* =========================================
+   RESPONSIVO
+========================================= */
+
+@media (max-width: 600px) {
+
+  .admin-panel {
+    top: 10px;
+    right: 10px;
+    bottom: 10px;
+
+    width: calc(100vw - 20px);
+  }
+
+  .admin-actions-bar {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
