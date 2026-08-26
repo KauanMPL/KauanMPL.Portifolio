@@ -26,8 +26,6 @@ export function Admin({
 
   // ============================================
   // LISTAS
-  // IMPORTANTE:
-  // Essas são as listas completas dos dados.
   // ============================================
   materias = [],
   habilidades = [],
@@ -87,6 +85,7 @@ export function Admin({
   if (!admin) {
     return (
       <button
+        type="button"
         className="admin-button"
         onClick={loginAdmin}
       >
@@ -102,11 +101,12 @@ export function Admin({
   return (
     <>
       {/* ==========================================
-          BOTÃO MINI QUANDO PAINEL ESTÁ OCULTO
+          BOTÃO MINI
           ========================================== */}
 
       {collapsed && (
         <button
+          type="button"
           className="admin-mini-button"
           onClick={() => setCollapsed(false)}
           title="Abrir painel administrativo"
@@ -152,7 +152,7 @@ export function Admin({
 
             <div className="admin-header-actions">
 
-              {/* Ocultar painel */}
+              {/* OCULTAR */}
               <button
                 type="button"
                 className="admin-collapse"
@@ -162,7 +162,7 @@ export function Admin({
                 <FaChevronRight />
               </button>
 
-              {/* Sair */}
+              {/* SAIR */}
               <button
                 type="button"
                 className="admin-close"
@@ -173,7 +173,6 @@ export function Admin({
               </button>
 
             </div>
-
           </div>
 
           {/* ========================================
@@ -216,7 +215,11 @@ export function Admin({
             <button
               type="button"
               onClick={() => {
-                setActiveTab("certificacoes");
+                if (abrirNovaCertificacao) {
+                  abrirNovaCertificacao();
+                } else {
+                  setActiveTab("certificacoes");
+                }
               }}
               className="btn-primary"
             >
@@ -261,7 +264,6 @@ export function Admin({
           <div className="admin-tabs">
 
             {/* GERAL */}
-
             <button
               type="button"
               className={`tab ${
@@ -276,7 +278,6 @@ export function Admin({
             </button>
 
             {/* CERTIFICAÇÕES */}
-
             <button
               type="button"
               className={`tab ${
@@ -325,17 +326,13 @@ export function Admin({
                   </div>
 
                   <div>
-
-                    <span>
-                      Matérias
-                    </span>
+                    <span>Matérias</span>
 
                     <strong>
                       {Array.isArray(materias)
                         ? materias.length
                         : 0}
                     </strong>
-
                   </div>
 
                 </div>
@@ -351,17 +348,13 @@ export function Admin({
                   </div>
 
                   <div>
-
-                    <span>
-                      Habilidades
-                    </span>
+                    <span>Habilidades</span>
 
                     <strong>
                       {Array.isArray(habilidades)
                         ? habilidades.length
                         : 0}
                     </strong>
-
                   </div>
 
                 </div>
@@ -377,17 +370,13 @@ export function Admin({
                   </div>
 
                   <div>
-
-                    <span>
-                      Projetos
-                    </span>
+                    <span>Projetos</span>
 
                     <strong>
                       {Array.isArray(projetos)
                         ? projetos.length
                         : 0}
                     </strong>
-
                   </div>
 
                 </div>
@@ -403,17 +392,13 @@ export function Admin({
                   </div>
 
                   <div>
-
-                    <span>
-                      Certificações
-                    </span>
+                    <span>Certificações</span>
 
                     <strong>
                       {Array.isArray(certificacoes)
                         ? certificacoes.length
                         : 0}
                     </strong>
-
                   </div>
 
                 </div>
