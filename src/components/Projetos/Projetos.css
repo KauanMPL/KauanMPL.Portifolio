@@ -1,0 +1,397 @@
+/* =========================
+   PROJETOS - Container
+========================== */
+.projetos-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* =========================
+   PROJETOS - Grid
+========================== */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 40px;
+}
+
+/* =========================
+   PROJETOS - Card
+========================== */
+.project-card {
+  position: relative;
+  min-height: 320px;
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 18px;
+  background: linear-gradient(
+    145deg,
+    rgba(17, 24, 39, 0.8),
+    rgba(5, 5, 5, 0.9)
+  );
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  overflow: hidden;
+}
+
+.project-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 229, 255, 0.03),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(0, 229, 255, 0.2);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6);
+}
+
+.project-card:hover::before {
+  opacity: 1;
+}
+
+/* =========================
+   PROJETOS - Cabeçalho
+========================== */
+.project-number {
+  color: #00e5ff;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: monospace;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.project-card h3 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 12px 0;
+  line-height: 1.2;
+  transition: color 0.3s ease;
+}
+
+.project-card:hover h3 {
+  color: #00e5ff;
+}
+
+/* =========================
+   PROJETOS - Descrição
+========================== */
+.project-card .project-description {
+  color: #94a3b8;
+  line-height: 1.7;
+  font-size: 15px;
+  margin: 0 0 16px 0;
+  flex: 1;
+}
+
+/* =========================
+   PROJETOS - Tecnologias
+========================== */
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0 16px 0;
+}
+
+.project-tech-item {
+  background: rgba(0, 229, 255, 0.08);
+  color: #00e5ff;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 14px;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 229, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.project-tech-item:hover {
+  background: rgba(0, 229, 255, 0.15);
+  border-color: rgba(0, 229, 255, 0.3);
+}
+
+/* =========================
+   PROJETOS - Status
+========================== */
+.project-status {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 14px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 4px 0 12px 0;
+  width: fit-content;
+}
+
+.project-status.em-desenvolvimento {
+  background: rgba(255, 165, 0, 0.15);
+  color: #ffa500;
+  border: 1px solid rgba(255, 165, 0, 0.2);
+}
+
+.project-status.finalizado {
+  background: rgba(0, 229, 255, 0.15);
+  color: #00e5ff;
+  border: 1px solid rgba(0, 229, 255, 0.2);
+}
+
+.project-status.manutencao {
+  background: rgba(255, 107, 107, 0.15);
+  color: #ff6b6b;
+  border: 1px solid rgba(255, 107, 107, 0.2);
+}
+
+.project-status.descontinuado {
+  background: rgba(100, 100, 100, 0.15);
+  color: #888;
+  border: 1px solid rgba(100, 100, 100, 0.2);
+}
+
+/* =========================
+   PROJETOS - Links
+========================== */
+.project-links {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.project-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #94a3b8;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: all 0.3s ease;
+}
+
+.project-links a:hover {
+  color: #00e5ff;
+  background: rgba(0, 229, 255, 0.08);
+  border-color: rgba(0, 229, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.project-links .github-link:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* =========================
+   PROJETOS - Admin Actions
+========================== */
+.project-admin {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-card:hover .project-admin {
+  opacity: 1;
+}
+
+.project-admin button {
+  background: rgba(255, 255, 255, 0.06);
+  border: none;
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #aaa;
+}
+
+.project-admin button:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.project-admin .edit-btn:hover {
+  background: rgba(0, 229, 255, 0.15);
+  color: #00e5ff;
+}
+
+.project-admin .delete-btn:hover {
+  background: rgba(255, 0, 64, 0.15);
+  color: #ff0040;
+}
+
+/* =========================
+   PROJETOS - Empty State
+========================== */
+.projetos-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px dashed rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  grid-column: 1 / -1;
+}
+
+.projetos-empty span {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.projetos-empty h3 {
+  font-size: 24px;
+  color: #fff;
+  margin: 0 0 8px 0;
+}
+
+.projetos-empty p {
+  color: #94a3b8;
+  margin: 0 0 20px 0;
+}
+
+.projetos-empty .admin-primary {
+  background: linear-gradient(135deg, #00d4ff, #0088cc);
+  color: #0a0a1a;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.projetos-empty .admin-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 212, 255, 0.4);
+}
+
+/* =========================
+   PROJETOS - Admin Actions (topo)
+========================== */
+.projetos-admin-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.projetos-admin-actions .admin-primary {
+  background: linear-gradient(135deg, #00d4ff, #0088cc);
+  color: #0a0a1a;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.projetos-admin-actions .admin-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 212, 255, 0.4);
+}
+
+/* =========================
+   RESPONSIVIDADE
+========================== */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
+/* Mobile Grande */
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .project-card {
+    min-height: 260px;
+    padding: 24px 20px;
+  }
+
+  .project-card h3 {
+    font-size: 22px;
+  }
+
+  .project-links {
+    flex-wrap: wrap;
+  }
+
+  .project-links a {
+    font-size: 12px;
+    padding: 6px 14px;
+  }
+
+  .projetos-admin-actions {
+    justify-content: center;
+  }
+}
+
+/* Mobile Pequeno */
+@media (max-width: 480px) {
+  .project-card {
+    padding: 20px 16px;
+    min-height: 220px;
+  }
+
+  .project-card h3 {
+    font-size: 20px;
+  }
+
+  .project-card .project-description {
+    font-size: 14px;
+  }
+
+  .project-tech-item {
+    font-size: 11px;
+    padding: 3px 10px;
+  }
+
+  .project-status {
+    font-size: 10px;
+    padding: 3px 10px;
+  }
+
+  .project-admin button {
+    font-size: 11px;
+    padding: 4px 10px;
+  }
+}
