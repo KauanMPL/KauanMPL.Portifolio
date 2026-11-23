@@ -31,6 +31,12 @@ import {
   SiExpo,
   SiPython,
   SiMongodb,
+  SiHtml5,
+  SiCss3,
+  SiCsharp,
+  SiCplusplus,
+  SiJsonwebtokens,
+  SiMicrosoftazure,  
 } from "react-icons/si";
 import { DiJava } from "react-icons/di";
 import { FaDatabase, FaCloud, FaCode, FaServer } from "react-icons/fa";
@@ -68,6 +74,13 @@ const ICONES_MAP = {
   SiExpo,
   SiPython,
   SiMongodb,
+  SiHtml5,
+  SiCss3,
+  SiCsharp,
+  SiCplusplus,
+  SiJsonwebtokens,
+  SiMicrosoftazure,
+  FaAws,
 };
 
 function Habilidades({ admin, onEdit, onDelete, habilidades: habilidadesProp, carregando: carregandoProp }) {
