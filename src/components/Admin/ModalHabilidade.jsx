@@ -3,6 +3,7 @@ import { useState } from "react";
 const CATEGORIAS = [
   "Front-End",
   "Back-End",
+  "Mobile",
   "Database",
   "DevOps & Tools",
   "Cloud",
@@ -33,12 +34,14 @@ const ICONES_DISPONIVEIS = [
   "SiGithub",
   "SiJest",
   "SiCypress",
+  "SiExpo",
 ];
 
 const CORES_PADRAO = {
   "Front-End": "#61DAFB",
   "Back-End": "#339933",
   Database: "#336791",
+  Mobile: "#61DAFB",
   "DevOps & Tools": "#2496ED",
   Cloud: "#FF9900",
 };
