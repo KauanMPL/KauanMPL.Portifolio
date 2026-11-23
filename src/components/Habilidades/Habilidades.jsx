@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import "./Habilidades.css";
 import { habilidadeService } from "../../services/habilidadeService";
 
-// Mapeamento dos ícones
 import {
   SiReact,
   SiAngular,
@@ -32,14 +31,19 @@ import {
   SiPython,
   SiMongodb,
   SiHtml5,
-  SiCss3,
-  SiCsharp,
   SiCplusplus,
   SiJsonwebtokens,
-  SiMicrosoftazure,  
 } from "react-icons/si";
+
 import { DiJava } from "react-icons/di";
-import { FaDatabase, FaCloud, FaCode, FaServer } from "react-icons/fa";
+
+import {
+  FaDatabase,
+  FaCloud,
+  FaCode,
+  FaServer,
+  FaAws,
+} from "react-icons/fa";
 
 const ICONES_MAP = {
   SiReact,
