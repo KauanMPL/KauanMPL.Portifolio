@@ -293,21 +293,30 @@ function App() {
 
             <div>
 
+             
               <h3>
-                Desenvolvedor em construção.
+                Desenvolvedor em constante evolução.
               </h3>
-
+              
               <p>
-                Sou estudante de Análise e Desenvolvimento
-                de Sistemas e desenvolvedor apaixonado por
-                tecnologia.
+                Sou estudante de Análise e Desenvolvimento de Sistemas (ADS),
+                apaixonado por tecnologia, inovação e desenvolvimento de software.
+              </p>
+              
+              <p>
+                Tenho interesse em transformar ideias em soluções digitais,
+                desenvolvendo aplicações que unem funcionalidade, criatividade
+                e tecnologia. Estou sempre explorando novas ferramentas,
+                aprimorando minhas habilidades e buscando desafios que
+                contribuam para meu crescimento profissional.
+              </p>
+              
+              <p>
+                Acredito que a tecnologia vai além de escrever código:
+                é uma ferramenta para resolver problemas, criar oportunidades
+                e transformar ideias em realidade.
               </p>
 
-              <p>
-                Gosto de transformar ideias em aplicações
-                funcionais, explorar novas tecnologias e
-                aprender constantemente.
-              </p>
 
             </div>
 
