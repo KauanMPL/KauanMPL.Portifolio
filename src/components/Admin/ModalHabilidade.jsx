@@ -35,6 +35,13 @@ const ICONES_DISPONIVEIS = [
   "SiJest",
   "SiCypress",
   "SiExpo",
+  "SiHtml5",
+  "SiCss3",
+  "SiCsharp",
+  "SiCplusplus",
+  "SiJsonwebtokens",
+  "SiMicrosoftazure",
+  "FaAws",
 ];
 
 const CORES_PADRAO = {
