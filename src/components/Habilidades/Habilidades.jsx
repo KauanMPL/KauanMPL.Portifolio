@@ -71,16 +71,17 @@ const ICONES_MAP = {
   FaCloud,
   FaCode,
   FaServer,
+  FaAws,
   SiExpo,
   SiPython,
   SiMongodb,
   SiHtml5,
-  SiCss3,
-  SiCsharp,
   SiCplusplus,
   SiJsonwebtokens,
-  SiMicrosoftazure,
-  FaAws,
+
+  SiCss3: FaCode,
+  SiCsharp: FaCode,
+  SiMicrosoftazure: FaCloud,
 };
 
 function Habilidades({ admin, onEdit, onDelete, habilidades: habilidadesProp, carregando: carregandoProp }) {
