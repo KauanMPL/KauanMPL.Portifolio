@@ -28,6 +28,9 @@ import {
   SiGithub,
   SiJest,
   SiCypress,
+  SiExpo,
+  SiPython,
+  SiMongodb,
 } from "react-icons/si";
 import { DiJava } from "react-icons/di";
 import { FaDatabase, FaCloud, FaCode, FaServer } from "react-icons/fa";
@@ -62,6 +65,9 @@ const ICONES_MAP = {
   FaCloud,
   FaCode,
   FaServer,
+  SiExpo,
+  SiPython,
+  SiMongodb,
 };
 
 function Habilidades({ admin, onEdit, onDelete, habilidades: habilidadesProp, carregando: carregandoProp }) {
@@ -117,7 +123,7 @@ function Habilidades({ admin, onEdit, onDelete, habilidades: habilidadesProp, ca
     );
   }
 
-  const categorias = ["Front-End", "Back-End", "Database", "DevOps & Tools", "Cloud"];
+  const categorias = ["Front-End", "Back-End", "Database", "Mobile", "DevOps & Tools", "Cloud"];
 
   return (
     <div className="habilidades-container">
